@@ -811,7 +811,7 @@
             // mean that a click event on a submit button could get an outdated value
             // from the scombobox, because the click would precede the timer event.
             //
-            // Note that the timer's function's bind() method is used to supply it with the correct 'this'        
+            // Note that the timer's function's bind() method is used to supply it with the correct 'this'
             blurTimer = setTimeout(
                 function() {
                     var $t = $(this),
@@ -821,7 +821,7 @@
                         // rather than this element losing focus to another element on the same window
                         $t.data('silentfocus', true);
                     }
-                    $t.data('fillonarrow', false); // Prevent the slide-up from resetting value        
+                    $t.data('fillonarrow', false); // Prevent the slide-up from resetting value
                     slide.call($t.closest(cp).children(cp + clist), 'up'); // Make sure the list closes when we're sure we've left the control
                 }.bind(this), 200
             );
@@ -829,7 +829,7 @@
             //Is this necessary here? Seems to cause issues when on Chrome (cannot select list items correctly.
             //The usefulness of fillOnBlur is debated, see https://github.com/ivkremer/jquery-simple-combobox/issues/25
             //Either remove it entirely, or move it into the setTimeout function above.
-            /*  
+            /*
             if (O.fillOnBlur && !O.invalidAsValue) {
                 getFirstP($t.parent().children(cp + clist)).click();
                 return;
@@ -1280,9 +1280,8 @@
         }
         return this.each(function() {
             var $t = $(this);
-            if (!($t.is('select, div'))) {
-                console.warn('target element is incorrect: ', this);
-                return;
+            if ($t.parent().hasClass(pname)) {
+                return; // already initialized
             }
             if ($t.is('select')) {
                 $t.wrap('<div />');
